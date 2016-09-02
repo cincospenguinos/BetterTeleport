@@ -2,10 +2,10 @@ name: BetterTeleport
 version: 0.01
 author: Andre LaFleur
 main: usa.alafleur.betterteleport.BetterTeleport
-#commands:
-#  loc:
-#    description: Add, query, and remove stored locations
-#    usage: /loc <add[x y z alias "name"] | query <alias|"name"> | remove <alias|"name">>
-#  tele:
-#    description: Teleport to a given location
-#    usage: /tele <username> <x y z|alias|"name">
+commands:
+  loc:
+    description: Add, query, and remove stored locations
+    usage: /loc <add[x y z alias "name"] | query <alias|"name"> | remove <alias|"name">>
+  tele:
+    description: Teleport to a given location
+    usage: /tele <username> <x y z|alias|"name">

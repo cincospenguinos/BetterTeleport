@@ -14,9 +14,9 @@ public class BetterTeleport extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // TODO: Load up database information
+        logInfo("Attempting to enable BetterTeleport...");
 
-        Logger.getLogger("Minecraft").info("[BetterTeleport] Enabling BetterTeleport");
+        // TODO: Load up database information
     }
 
     @Override

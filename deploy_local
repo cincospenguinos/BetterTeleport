@@ -15,7 +15,9 @@ loaded=`grep "BetterTeleport" $spigot_dir/logs/latest.log`
 if [[ $loaded == *"Could not load 'plugins/BetterTeleport.jar'"* ]]
 then
     echo "Plugin could not be loaded!"
+    echo `grep "Exception" $spigot_dir/logs/latest.log`
     screen -X -S minecraft quit
 else
-    java -jar $mc_jar &> /dev/null &
+    java -jar $mc_jar &> /dev/null
+    screen -S minecraft -p 0 -X stuff "stop$(printf \\r)"
 fi
