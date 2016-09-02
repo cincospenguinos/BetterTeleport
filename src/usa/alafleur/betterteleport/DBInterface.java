@@ -45,8 +45,7 @@ public class DBInterface {
      */
     public static void setupSchema(String schema){
         schemaName = schema;
-
-        // TODO: This
+        
         try {
             PreparedStatement stmt = connection.prepareStatement("CREATE DATABASE IF NOT EXISTS " + schemaName);
             stmt.execute();

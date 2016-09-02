@@ -20,6 +20,7 @@ public class BetterTeleport extends JavaPlugin {
     public void onEnable() {
         setupConfig();
 
+        // Setup the schema
         Exception e = DBInterface.openConnection(config.getString("dbusername"), config.getString("dbpassword"), config.getString("dburl"));
         if(e != null) {
             log("ERROR! Could not open connection with DB!", Level.SEVERE);
@@ -28,6 +29,10 @@ public class BetterTeleport extends JavaPlugin {
         }
 
         DBInterface.setupSchema("minecraft");
+
+        // Add the commands
+        getCommand("loc").setExecutor(new LocationCommand());
+        getCommand("tele").setExecutor(new TeleCommand());
     }
 
     @Override
