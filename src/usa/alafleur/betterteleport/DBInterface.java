@@ -48,13 +48,14 @@ public class DBInterface {
 
         // TODO: This
         try {
-            PreparedStatement stmt = connection.prepareStatement("USE " + schemaName);
+            PreparedStatement stmt = connection.prepareStatement("CREATE DATABASE IF NOT EXISTS " + schemaName);
             stmt.execute();
 
-            stmt = connection.prepareStatement("CREATE DATABASE IF NOT EXISTS " + schemaName);
+            stmt = connection.prepareStatement("USE " + schemaName);
             stmt.execute();
 
-            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS betterteleport()");
+            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS betterteleport(alias VARCHAR(40) PRIMARY KEY, x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, description TEXT)");
+            stmt.execute();
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();

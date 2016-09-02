@@ -10,7 +10,7 @@ mc_jar=$HOME/Spigot/Minecraft.jar
 cp out/artifacts/BetterTeleport_jar/BetterTeleport.jar $spigot_dir/plugins
 cd $spigot_dir
 screen -dmS minecraft java -Xms512M -Xmx1G -XX:MaxPermSize=128M -XX:+UseConcMarkSweepGC -jar $spigot_dir/spigot.jar
-sleep 3
+
 loaded=`grep "BetterTeleport" $spigot_dir/logs/latest.log`
 if [[ $loaded == *"Could not load 'plugins/BetterTeleport.jar'"* ]]
 then
