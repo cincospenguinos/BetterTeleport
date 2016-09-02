@@ -12,7 +12,7 @@ public class BetterTeleport extends JavaPlugin {
 
     @Override
     public void onEnable(){
-        //Fired when the server enables the plugin
+        // TODO: Load up database information
     }
 
     @Override
