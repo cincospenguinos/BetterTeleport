@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="BetterTeleport:jar">
+  <artifact type="jar" build-on-make="true" name="BetterTeleport:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/BetterTeleport_jar</output-path>
     <root id="archive" name="BetterTeleport.jar">
       <element id="module-output" name="BetterTeleport" />
