@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Interface between the database and the plugin.
@@ -59,6 +60,41 @@ public class DBInterface {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void addLocation(String alias, int x, int y, int z, String description) {
+        try {
+            PreparedStatement stmt;
+
+            if(description == null){
+                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, NULL)");
+            } else {
+                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?)");
+                stmt.setString(5, description);
+            }
+
+            stmt.setString(1, alias);
+            stmt.setInt(2, x);
+            stmt.setInt(3, y);
+            stmt.setInt(4, z);
+            stmt.execute();
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeLocation(){
+        // TODO: This
+    }
+
+    public static void getCoordinatesFromAlias(){
+        // TODO: This
+    }
+
+    public static List<String> getAllLocations(){
+        // TODO: This
+        return null;
     }
 
     /**
