@@ -54,7 +54,8 @@ public class DBInterface {
             stmt = connection.prepareStatement("USE " + schemaName);
             stmt.execute();
 
-            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS betterteleport(alias VARCHAR(40) PRIMARY KEY, x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, description TEXT)");
+            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS betterteleport(alias VARCHAR(40) PRIMARY KEY, " +
+                    "x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, added_by VARCHAR(30) NOT NULL, description TEXT)");
             stmt.execute();
             connection.commit();
         } catch (SQLException e) {
@@ -62,21 +63,22 @@ public class DBInterface {
         }
     }
 
-    public static void addLocation(String alias, int x, int y, int z, String description) {
+    public static void addLocation(String alias, int x, int y, int z, String addedBy, String description) {
         try {
             PreparedStatement stmt;
 
             if(description == null){
-                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, NULL)");
+                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?, NULL)");
             } else {
-                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?)");
-                stmt.setString(5, description);
+                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?, ?)");
+                stmt.setString(6, description);
             }
 
             stmt.setString(1, alias);
             stmt.setInt(2, x);
             stmt.setInt(3, y);
             stmt.setInt(4, z);
+            stmt.setString(5, addedBy);
             stmt.execute();
             connection.commit();
         } catch (SQLException e) {

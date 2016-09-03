@@ -150,13 +150,15 @@ public class LocationCommand implements CommandExecutor {
      * @param args - The arguments from the command
      * @return
      */
-    private String add(CommandSender sender, String[] args) {
+    public String add(CommandSender sender, String[] args) {
         // Let's get the separate pieces together
         String description = null;
         if(hasDescription(args))
             description = getDescription(args);
 
         String alias = getAlias(args);
+
+        String addedBy = "server";
 
         int x, y, z;
         ArrayList<String> argsList = new ArrayList<>();
@@ -170,6 +172,8 @@ public class LocationCommand implements CommandExecutor {
             x = l.getBlockX();
             y = l.getBlockY();
             z = l.getBlockZ();
+
+            addedBy = p.getPlayerListName();
         } else {
             try {
                 x = Integer.parseInt(args[1]);
@@ -180,7 +184,7 @@ public class LocationCommand implements CommandExecutor {
             }
         }
 
-        DBInterface.addLocation(alias, x, y, z, description);
+        DBInterface.addLocation(alias, x, y, z, addedBy, description);
 
         return null;
     }
@@ -189,7 +193,7 @@ public class LocationCommand implements CommandExecutor {
      * TODO: This
      * @return
      */
-    private String remove(CommandSender sender, String[] args){
+    public String remove(CommandSender sender, String[] args){
         return null;
     }
 
@@ -197,7 +201,7 @@ public class LocationCommand implements CommandExecutor {
      * TODO: This
      * @return
      */
-    private String list(CommandSender sender, String[] args){
+    public String list(CommandSender sender, String[] args){
         return null;
     }
 }
