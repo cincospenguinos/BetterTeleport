@@ -28,10 +28,7 @@ public class LocationCommand implements CommandExecutor {
         String subCommand = args[0];
 
         if(subCommand.equalsIgnoreCase("add")){
-            String response = add(commandSender, args);
-
-            if(response != null)
-                commandSender.sendMessage(ChatColor.RED + response); // NOTE: I think this is how you change the color in the chat
+            add(commandSender, args);
         } else if(subCommand.equalsIgnoreCase("remove")){
             String response = remove(commandSender, args);
 
@@ -148,9 +145,8 @@ public class LocationCommand implements CommandExecutor {
      * TODO: Test this
      *
      * @param args - The arguments from the command
-     * @return
      */
-    public String add(CommandSender sender, String[] args) {
+    public void add(CommandSender sender, String[] args) {
         // Let's get the separate pieces together
         String description = null;
         if(hasDescription(args))
@@ -180,20 +176,22 @@ public class LocationCommand implements CommandExecutor {
                 y = Integer.parseInt(args[2]);
                 z = Integer.parseInt(args[3]);
             } catch (NumberFormatException e){
-                return "A proper x, y, and z coordinate must be provided!";
+                sender.sendMessage(ChatColor.RED + "A proper x, y, and z coordinate must be provided!");
+                return;
             }
         }
 
-        DBInterface.addLocation(alias, x, y, z, addedBy, description);
-
-        return null;
+        if(DBInterface.addLocation(alias, x, y, z, addedBy, description))
+            sender.sendMessage(ChatColor.GREEN + "Added \"" + alias + "\"");
+        else
+            sender.sendMessage(ChatColor.RED + "An error occurred with the database. Please refer to your server administrator.");
     }
 
     /**
      * TODO: This
      * @return
      */
-    public String remove(CommandSender sender, String[] args){
+    public String remove(CommandSender sender, String[] args) {
         return null;
     }
 

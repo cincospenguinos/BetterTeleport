@@ -1,9 +1,6 @@
 package usa.alafleur.betterteleport;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -54,23 +51,36 @@ public class DBInterface {
             stmt = connection.prepareStatement("USE " + schemaName);
             stmt.execute();
 
-            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS betterteleport(alias VARCHAR(40) PRIMARY KEY, " +
-                    "x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, added_by VARCHAR(30) NOT NULL, description TEXT)");
+            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS locations(alias VARCHAR(40) PRIMARY KEY, " +
+                    "x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, added_by VARCHAR(30) NOT NULL, date_added DATETIME NOT NULL, description TEXT)");
             stmt.execute();
+
+            // TODO: Seriously consider including a table that details who removed what locations and when
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void addLocation(String alias, int x, int y, int z, String addedBy, String description) {
+    /**
+     * Adds the location given the parameters passed to the database. Returns true if it was successful.
+     *
+     * @param alias - alias the location should be known by
+     * @param x - int location of x block
+     * @param y - location of y block
+     * @param z - location of z block
+     * @param addedBy - who added the location
+     * @param description - a description of the location. May be null.
+     * @return true if successful
+     */
+    public static boolean addLocation(String alias, int x, int y, int z, String addedBy, String description) {
         try {
             PreparedStatement stmt;
 
             if(description == null){
-                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?, NULL)");
+                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, NOW(), NULL)");
             } else {
-                stmt = connection.prepareStatement("INSERT INTO betterteleport VALUES(?, ?, ?, ?, ?, ?)");
+                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, NOW(), ?)");
                 stmt.setString(6, description);
             }
 
@@ -83,11 +93,38 @@ public class DBInterface {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 
-    public static void removeLocation(){
-        // TODO: This
+    /**
+     * Removes the location given the alias provided. If the location does not exist or if there was a DB error,
+     * this method returns false.
+     *
+     * @param alias - location to remove
+     * @return true if the location was removed
+     */
+    public static boolean removeLocation(String alias){
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ?");
+            stmt.setString(1, alias);
+            ResultSet results = stmt.executeQuery();
+
+            if(results.absolute(0)){
+                stmt = connection.prepareStatement("DELETE FROM locations WHERE alias = ?");
+                stmt.setString(1, alias);
+                stmt.execute();
+                connection.commit();
+            } else
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
     public static void getCoordinatesFromAlias(){
