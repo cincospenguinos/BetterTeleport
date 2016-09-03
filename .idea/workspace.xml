@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4eb36541-e330-475f-a6a2-f40c0b1cc476" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java" afterPath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" afterPath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" />
     </list>
     <ignored path="BetterTeleport.iws" />
@@ -45,16 +44,15 @@
       <file leaf-file-name="LocationCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
+            <state relative-caret-position="456">
+              <caret line="125" column="75" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-                <element signature="e#5721#5722#0" expanded="true" />
-                <element signature="e#5748#5749#0" expanded="true" />
-                <element signature="e#5860#5861#0" expanded="true" />
-                <element signature="e#5887#5888#0" expanded="true" />
+                <element signature="e#5734#5735#0" expanded="true" />
+                <element signature="e#5761#5762#0" expanded="true" />
+                <element signature="e#5873#5874#0" expanded="true" />
+                <element signature="e#5900#5901#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -417,11 +415,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="true" />
-            <element signature="e#5748#5749#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
+            <element signature="e#5734#5735#0" expanded="true" />
+            <element signature="e#5761#5762#0" expanded="true" />
+            <element signature="e#5873#5874#0" expanded="true" />
+            <element signature="e#5900#5901#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -461,11 +458,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="true" />
-            <element signature="e#5748#5749#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
+            <element signature="e#5734#5735#0" expanded="true" />
+            <element signature="e#5761#5762#0" expanded="true" />
+            <element signature="e#5873#5874#0" expanded="true" />
+            <element signature="e#5900#5901#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -505,11 +501,10 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="true" />
-            <element signature="e#5748#5749#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
+            <element signature="e#5734#5735#0" expanded="true" />
+            <element signature="e#5761#5762#0" expanded="true" />
+            <element signature="e#5873#5874#0" expanded="true" />
+            <element signature="e#5900#5901#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -625,16 +620,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
+        <state relative-caret-position="456">
+          <caret line="125" column="75" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="true" />
-            <element signature="e#5748#5749#0" expanded="true" />
-            <element signature="e#5860#5861#0" expanded="true" />
-            <element signature="e#5887#5888#0" expanded="true" />
+            <element signature="e#5734#5735#0" expanded="true" />
+            <element signature="e#5761#5762#0" expanded="true" />
+            <element signature="e#5873#5874#0" expanded="true" />
+            <element signature="e#5900#5901#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -121,9 +121,9 @@ public class LocationCommand implements CommandExecutor {
         StringBuilder builder = new StringBuilder();
 
         for(; startIndex <= endIndex; startIndex++)
-            builder.append(args[startIndex]);
+            builder.append(args[startIndex] + " ");
 
-        String description = builder.toString().replaceAll("\"", "");
+        String description = builder.toString().replaceAll("\"", "").trim();
         return description;
     }
 
