@@ -30,10 +30,7 @@ public class LocationCommand implements CommandExecutor {
         if(subCommand.equalsIgnoreCase("add")){
             add(commandSender, args);
         } else if(subCommand.equalsIgnoreCase("remove")){
-            String response = remove(commandSender, args);
-
-            if(response != null)
-                commandSender.sendMessage(ChatColor.RED + response);
+            remove(commandSender, args);
         } else
             list(commandSender, args);
 
@@ -188,11 +185,15 @@ public class LocationCommand implements CommandExecutor {
     }
 
     /**
-     * TODO: This
-     * @return
+     * Removes the location matching the alias provided if it exists.
      */
-    public String remove(CommandSender sender, String[] args) {
-        return null;
+    public void remove(CommandSender sender, String[] args) {
+        if(!DBInterface.hasLocation(args[1]))
+            sender.sendMessage(ChatColor.RED + "Location \"" + args[1] + "\" does not seem to exist.");
+        else if(DBInterface.removeLocation(args[1]))
+            sender.sendMessage(ChatColor.GREEN + "Removed location \"" + args[1] + "\"");
+        else
+            sender.sendMessage(ChatColor.RED + "An error has occurred. Please report this incident to your server administrator.");
     }
 
     /**

@@ -5,7 +5,7 @@ main: usa.alafleur.betterteleport.BetterTeleport
 commands:
   loc:
     description: Add, query, and remove stored locations
-    usage: /loc <add[x y z alias "name"] | query <alias|"name"> | remove <alias|"name">>
+    usage: /loc <add{x y z}> <alias> <"description of location"> | <list> | <remove> <alias>
   tele:
     description: Teleport to a given location
     usage: /tele <username> <x y z|alias|"name">

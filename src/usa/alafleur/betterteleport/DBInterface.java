@@ -100,6 +100,22 @@ public class DBInterface {
     }
 
     /**
+     * Returns true if the location exists.
+     * @param alias
+     * @return
+     */
+    public static boolean hasLocation(String alias){
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ?");
+            stmt.setString(1, alias);
+            return stmt.executeQuery().next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
      * Removes the location given the alias provided. If the location does not exist or if there was a DB error,
      * this method returns false.
      *
@@ -112,7 +128,7 @@ public class DBInterface {
             stmt.setString(1, alias);
             ResultSet results = stmt.executeQuery();
 
-            if(results.absolute(0)){
+            if(results.next()){
                 stmt = connection.prepareStatement("DELETE FROM locations WHERE alias = ?");
                 stmt.setString(1, alias);
                 stmt.execute();
