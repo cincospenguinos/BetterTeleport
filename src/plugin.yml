@@ -8,4 +8,4 @@ commands:
     usage: /loc <add{x y z}> <alias> <"description of location"> | <list> | <remove> <alias>
   tele:
     description: Teleport to a given location
-    usage: /tele <username> <x y z|alias|"name">
+    usage: /tele <username|x y z|alias>

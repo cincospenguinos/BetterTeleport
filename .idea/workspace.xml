@@ -7,9 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4eb36541-e330-475f-a6a2-f40c0b1cc476" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java" afterPath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" afterPath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java" afterPath="$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java" />
     </list>
     <ignored path="BetterTeleport.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,22 +42,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationCommand.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java">
+      <file leaf-file-name="TeleCommand.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="412">
-              <caret line="208" column="19" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#getAlias#0;class#LocationCommand#0" expanded="false" />
-                <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
-                <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
-              </folding>
+              <caret line="86" column="42" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,8 +55,8 @@
       <file leaf-file-name="DBInterface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
+            <state relative-caret-position="379">
+              <caret line="151" column="29" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -107,14 +97,14 @@
         <option value="$PROJECT_DIR$/src/usa/alafler/betterteleport/BetterTeleport.java" />
         <option value="$PROJECT_DIR$/plugin.yml" />
         <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/plugin.yml" />
-        <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/BetterTeleport.java" />
         <option value="$PROJECT_DIR$/deploy_local" />
         <option value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/sql/Connection.class" />
+        <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java" />
-        <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java" />
+        <option value="$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java" />
       </list>
     </option>
   </component>
@@ -466,6 +456,7 @@
             <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -512,6 +503,7 @@
             <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -520,6 +512,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -547,6 +540,7 @@
             <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -565,6 +559,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -592,6 +587,7 @@
             <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -610,6 +606,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -637,6 +634,7 @@
             <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
             <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -655,6 +653,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -678,13 +677,6 @@
             <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -717,6 +709,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -724,6 +717,43 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="203" column="57" selection-start-line="203" selection-start-column="57" selection-end-line="203" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#getAlias#0;class#LocationCommand#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
+            <element signature="method#list#0;class#LocationCommand#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="151" column="29" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -737,39 +767,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/DBInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/LocationCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/usa/alafleur/betterteleport/TeleCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
-          <caret line="208" column="19" selection-start-line="208" selection-start-column="19" selection-end-line="208" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#verifyArgs#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#hasDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getDescription#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#getAlias#0;class#LocationCommand#0" expanded="false" />
-            <element signature="docComment;method#add#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#add#0;class#LocationCommand#0" expanded="false" />
-            <element signature="method#remove#0;class#LocationCommand#0" expanded="false" />
-          </folding>
+          <caret line="86" column="42" selection-start-line="86" selection-start-column="42" selection-end-line="86" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

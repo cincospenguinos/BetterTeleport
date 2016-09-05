@@ -144,8 +144,33 @@ public class DBInterface {
         return true;
     }
 
-    public static void getCoordinatesFromAlias(){
-        // TODO: This
+    /**
+     * Returns the coordinates given some alias. If the alias does not exist in the database,
+     * this method returns null.
+     *
+     * @param alias - The alias to look up
+     * @return int[] {x, y, z} or null
+     */
+    public static int[] getCoordinatesFromAlias(String alias){
+        int[] location = new int[3];
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT x, y, z FROM locations WHERE alias = ?");
+            stmt.setString(1, alias);
+            ResultSet results = stmt.executeQuery();
+
+            if(!results.next())
+                return null;
+
+            location[0] = results.getInt(1);
+            location[1] = results.getInt(2);
+            location[2] = results.getInt(3);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return location;
     }
 
     public static TreeMap<String, String> getAllLocations(){
