@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The location command management stuff.
@@ -197,10 +199,21 @@ public class LocationCommand implements CommandExecutor {
     }
 
     /**
-     * TODO: This
-     * @return
+     * Prints out to the user the list of all locations
      */
-    public String list(CommandSender sender, String[] args){
-        return null;
+    public void list(CommandSender sender, String[] args){
+        TreeMap<String, String> locs = DBInterface.getAllLocations();
+
+        if(locs.size() == 0){
+            sender.sendMessage(ChatColor.RED + "There are no locations to show.");
+            return;
+        }
+
+        for(Map.Entry<String, String> e : locs.entrySet()){
+            if(e.getValue() != null)
+                sender.sendMessage(ChatColor.YELLOW + e.getKey() + " - " + ChatColor.WHITE + e.getValue());
+            else
+                sender.sendMessage(ChatColor.YELLOW + e.getKey());
+        }
     }
 }

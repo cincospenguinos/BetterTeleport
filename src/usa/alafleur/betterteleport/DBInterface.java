@@ -2,6 +2,7 @@ package usa.alafleur.betterteleport;
 
 import java.sql.*;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Interface between the database and the plugin.
@@ -147,9 +148,20 @@ public class DBInterface {
         // TODO: This
     }
 
-    public static List<String> getAllLocations(){
-        // TODO: This
-        return null;
+    public static TreeMap<String, String> getAllLocations(){
+        TreeMap<String, String> locations = new TreeMap<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT alias, description FROM locations");
+            ResultSet results = stmt.executeQuery();
+
+            while(results.next())
+                locations.put(results.getString(1), results.getString(2));
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return locations;
     }
 
     /**
