@@ -5,6 +5,8 @@ import java.util.TreeMap;
 
 /**
  * Interface between the database and the plugin.
+ *
+ * TODO: Consider using the Java Persistence API (JPA)
  */
 public class DBInterface {
 

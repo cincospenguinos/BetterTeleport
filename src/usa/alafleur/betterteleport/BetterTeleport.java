@@ -1,6 +1,7 @@
 package usa.alafleur.betterteleport;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,12 +26,13 @@ public class BetterTeleport extends JavaPlugin {
         if(e != null) {
             log("ERROR! Could not open connection with DB!", Level.SEVERE);
             e.printStackTrace();
+            Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
 
-        // TODO: Figure out how to disable this plugin if the schema can't get setup right
         if(!DBInterface.setupSchema("minecraft")){
             log("Could not setup the database! Please check logs and ensure that your database is setup correctly.", Level.SEVERE);
+            Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
 
@@ -47,7 +49,6 @@ public class BetterTeleport extends JavaPlugin {
         if((e = DBInterface.closeConnection()) != null){
             log("ERROR! Could not close DB connection!", Level.SEVERE);
             e.printStackTrace();
-            return;
         }
     }
 
