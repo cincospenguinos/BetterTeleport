@@ -2,6 +2,7 @@ package usa.alafleur.betterteleport;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,6 +27,11 @@ public class LocationCommand implements CommandExecutor {
         // Check and make sure all of the args are valid
         if(!verifyArgs(args))
             return false;
+
+        if(!(commandSender instanceof Player)){
+            commandSender.sendMessage("Only players are able to use the /loc command at this time.");
+            return true;
+        }
 
         String subCommand = args[0];
 
@@ -141,34 +147,30 @@ public class LocationCommand implements CommandExecutor {
     /**
      * Adds the new location to the set. Returns null if successful or a String if there was an error of some sort.
      *
-     * TODO: Test this
-     *
      * @param args - The arguments from the command
      */
     public void add(CommandSender sender, String[] args) {
-        // Let's get the separate pieces together
+        // Different parts we are going to need
+        Player p = (Player) sender;
+
         String description = null;
         if(hasDescription(args))
             description = getDescription(args);
 
         String alias = getAlias(args);
-
-        String addedBy = "server";
+        String addedBy = p.getPlayerListName();
 
         int x, y, z;
         ArrayList<String> argsList = new ArrayList<>();
         Collections.addAll(argsList, args);
 
-        // If we have a player and no integers, then we need to get them out here
-        if(sender instanceof Player && argsList.indexOf(alias) == 1){
-            Player p = (Player) sender;
+        // If we have no integers, then we need to get the coordinates from the player
+        if(argsList.indexOf(alias) == 1){
             Location l = p.getLocation();
 
             x = l.getBlockX();
             y = l.getBlockY();
             z = l.getBlockZ();
-
-            addedBy = p.getPlayerListName();
         } else {
             try {
                 x = Integer.parseInt(args[1]);
@@ -180,7 +182,7 @@ public class LocationCommand implements CommandExecutor {
             }
         }
 
-        if(DBInterface.addLocation(alias, x, y, z, addedBy, description))
+        if(DBInterface.addLocation(alias, getDimension(p.getWorld().getBiome(x, z)), x, y, z, addedBy, description))
             sender.sendMessage(ChatColor.GREEN + "Added \"" + alias + "\"");
         else
             sender.sendMessage(ChatColor.RED + "An error occurred with the database. Please refer to your server administrator.");
@@ -202,7 +204,8 @@ public class LocationCommand implements CommandExecutor {
      * Prints out to the user the list of all locations
      */
     public void list(CommandSender sender, String[] args){
-        TreeMap<String, String> locs = DBInterface.getAllLocations();
+        Player p = (Player) sender;
+        TreeMap<String, String> locs = DBInterface.getAllLocations(getDimension(p.getWorld().getBiome(p.getLocation().getBlockX(), p.getLocation().getBlockZ())));
 
         if(locs.size() == 0){
             sender.sendMessage(ChatColor.RED + "There are no locations to show.");
@@ -214,6 +217,23 @@ public class LocationCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.YELLOW + e.getKey() + " - " + ChatColor.WHITE + e.getValue());
             else
                 sender.sendMessage(ChatColor.YELLOW + e.getKey());
+        }
+    }
+
+    /**
+     * Returns a string of the dimension that the location is in.
+     *
+     * @param b - Biome to get the dimension from
+     * @return String of the dimension
+     */
+    private String getDimension(Biome b){
+        switch(b){
+            case HELL:
+                return "nether";
+            case VOID:
+                return "end";
+            default:
+                return "overworld";
         }
     }
 }

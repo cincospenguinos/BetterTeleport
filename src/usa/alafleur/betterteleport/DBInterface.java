@@ -1,5 +1,8 @@
 package usa.alafleur.betterteleport;
 
+import org.bukkit.block.Biome;
+
+import javax.print.DocFlavor;
 import java.sql.*;
 import java.util.List;
 import java.util.TreeMap;
@@ -42,7 +45,7 @@ public class DBInterface {
      *
      * @param schema - name of the schema to create/setup
      */
-    public static void setupSchema(String schema){
+    public static boolean setupSchema(String schema){
         schemaName = schema;
         
         try {
@@ -52,15 +55,21 @@ public class DBInterface {
             stmt = connection.prepareStatement("USE " + schemaName);
             stmt.execute();
 
-            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS locations(alias VARCHAR(40) PRIMARY KEY, " +
-                    "x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, added_by VARCHAR(30) NOT NULL, date_added DATETIME NOT NULL, description TEXT)");
+            stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS locations(alias VARCHAR(40), " +
+                    "dimension VARCHAR(40) PRIMARY KEY, x INT NOT NULL, y INT NOT NULL, z INT NOT NULL, " +
+                    "added_by VARCHAR(30) NOT NULL, date_added DATETIME NOT NULL, description TEXT)");
+            stmt.execute();
+            stmt = connection.prepareStatement("ALTER TABLE locations DROP PRIMARY KEY, ADD PRIMARY KEY (alias, dimension)");
             stmt.execute();
 
             // TODO: Seriously consider including a table that details who removed what locations and when
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -74,22 +83,23 @@ public class DBInterface {
      * @param description - a description of the location. May be null.
      * @return true if successful
      */
-    public static boolean addLocation(String alias, int x, int y, int z, String addedBy, String description) {
+    public static boolean addLocation(String alias, String dimension, int x, int y, int z, String addedBy,  String description) {
         try {
             PreparedStatement stmt;
 
             if(description == null){
-                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, NOW(), NULL)");
+                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, ?, NOW(), NULL)");
             } else {
-                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, NOW(), ?)");
-                stmt.setString(6, description);
+                stmt = connection.prepareStatement("INSERT INTO locations VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)");
+                stmt.setString(7, description);
             }
 
             stmt.setString(1, alias);
-            stmt.setInt(2, x);
-            stmt.setInt(3, y);
-            stmt.setInt(4, z);
-            stmt.setString(5, addedBy);
+            stmt.setString(2, dimension);
+            stmt.setInt(3, x);
+            stmt.setInt(4, y);
+            stmt.setInt(5, z);
+            stmt.setString(6, addedBy);
             stmt.execute();
             connection.commit();
         } catch (SQLException e) {
@@ -182,6 +192,25 @@ public class DBInterface {
             while(results.next())
                 locations.put(results.getString(1), results.getString(2));
         } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return locations;
+    }
+
+    public static TreeMap<String, String> getAllLocations(String dimension) {
+        TreeMap<String, String> locations = new TreeMap<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT alias, description FROM locations WHERE dimension = ?");
+            stmt.setString(1, dimension);
+            ResultSet results = stmt.executeQuery();
+
+            while(results.next())
+                locations.put(results.getString(1), results.getString(2));
+
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

@@ -28,7 +28,10 @@ public class BetterTeleport extends JavaPlugin {
             return;
         }
 
-        DBInterface.setupSchema("minecraft");
+        if(!DBInterface.setupSchema("minecraft")){
+            log("Could not setup the database! Please check logs and ensure that your database is setup correctly.", Level.SEVERE);
+            return;
+        }
 
         // Add the commands
         getCommand("loc").setExecutor(new LocationCommand());

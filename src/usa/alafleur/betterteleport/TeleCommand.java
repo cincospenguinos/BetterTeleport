@@ -49,6 +49,7 @@ public class TeleCommand implements CommandExecutor {
     }
 
     public void teleport(Player player, String[] args){
+        // TODO: Set the roll, pitch and yaw according to the player's roll, pitch and yaw
         int x = 0;
         int y = 0;
         int z = 0;
