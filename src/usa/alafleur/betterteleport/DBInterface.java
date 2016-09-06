@@ -1,10 +1,6 @@
 package usa.alafleur.betterteleport;
 
-import org.bukkit.block.Biome;
-
-import javax.print.DocFlavor;
 import java.sql.*;
-import java.util.List;
 import java.util.TreeMap;
 
 /**
@@ -113,12 +109,14 @@ public class DBInterface {
     /**
      * Returns true if the location exists.
      * @param alias
+     * @param dimension
      * @return
      */
-    public static boolean hasLocation(String alias){
+    public static boolean hasLocation(String alias, String dimension){
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ? AND dimension = ?");
             stmt.setString(1, alias);
+            stmt.setString(2, dimension);
             return stmt.executeQuery().next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,15 +131,17 @@ public class DBInterface {
      * @param alias - location to remove
      * @return true if the location was removed
      */
-    public static boolean removeLocation(String alias){
+    public static boolean removeLocation(String alias, String dimension){
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM locations WHERE alias = ? AND dimension = ?");
             stmt.setString(1, alias);
+            stmt.setString(2, dimension);
             ResultSet results = stmt.executeQuery();
 
             if(results.next()){
-                stmt = connection.prepareStatement("DELETE FROM locations WHERE alias = ?");
+                stmt = connection.prepareStatement("DELETE FROM locations WHERE alias = ? AND dimension = ?");
                 stmt.setString(1, alias);
+                stmt.setString(2, dimension);
                 stmt.execute();
                 connection.commit();
             } else
@@ -159,14 +159,16 @@ public class DBInterface {
      * this method returns null.
      *
      * @param alias - The alias to look up
+     * @param dimension - The dimension the location should be
      * @return int[] {x, y, z} or null
      */
-    public static int[] getCoordinatesFromAlias(String alias){
+    public static int[] getCoordinates(String alias, String dimension){
         int[] location = new int[3];
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT x, y, z FROM locations WHERE alias = ?");
+            PreparedStatement stmt = connection.prepareStatement("SELECT x, y, z FROM locations WHERE alias = ? AND dimension = ?");
             stmt.setString(1, alias);
+            stmt.setString(2, dimension);
             ResultSet results = stmt.executeQuery();
 
             if(!results.next())

@@ -36,11 +36,11 @@ public class LocationCommand implements CommandExecutor {
         String subCommand = args[0];
 
         if(subCommand.equalsIgnoreCase("add")){
-            add(commandSender, args);
+            add((Player) commandSender, args);
         } else if(subCommand.equalsIgnoreCase("remove")){
-            remove(commandSender, args);
+            remove((Player) commandSender, args);
         } else
-            list(commandSender, args);
+            list((Player) commandSender, args);
 
         return true;
     }
@@ -149,16 +149,14 @@ public class LocationCommand implements CommandExecutor {
      *
      * @param args - The arguments from the command
      */
-    public void add(CommandSender sender, String[] args) {
+    public void add(Player sender, String[] args) {
         // Different parts we are going to need
-        Player p = (Player) sender;
-
         String description = null;
         if(hasDescription(args))
             description = getDescription(args);
 
         String alias = getAlias(args);
-        String addedBy = p.getPlayerListName();
+        String addedBy = sender.getPlayerListName();
 
         int x, y, z;
         ArrayList<String> argsList = new ArrayList<>();
@@ -166,7 +164,7 @@ public class LocationCommand implements CommandExecutor {
 
         // If we have no integers, then we need to get the coordinates from the player
         if(argsList.indexOf(alias) == 1){
-            Location l = p.getLocation();
+            Location l = sender.getLocation();
 
             x = l.getBlockX();
             y = l.getBlockY();
@@ -182,7 +180,7 @@ public class LocationCommand implements CommandExecutor {
             }
         }
 
-        if(DBInterface.addLocation(alias, getDimension(p.getWorld().getBiome(x, z)), x, y, z, addedBy, description))
+        if(DBInterface.addLocation(alias, getDimension(sender.getWorld().getBiome(x, z)), x, y, z, addedBy, description))
             sender.sendMessage(ChatColor.GREEN + "Added \"" + alias + "\"");
         else
             sender.sendMessage(ChatColor.RED + "An error occurred with the database. Please refer to your server administrator.");
@@ -191,10 +189,13 @@ public class LocationCommand implements CommandExecutor {
     /**
      * Removes the location matching the alias provided if it exists.
      */
-    public void remove(CommandSender sender, String[] args) {
-        if(!DBInterface.hasLocation(args[1]))
+    public void remove(Player sender, String[] args) {
+        Location l = sender.getLocation();
+        String dimension = getDimension(sender.getWorld().getBiome(l.getBlockX(), l.getBlockZ()));
+
+        if(!DBInterface.hasLocation(args[1], dimension))
             sender.sendMessage(ChatColor.RED + "Location \"" + args[1] + "\" does not seem to exist.");
-        else if(DBInterface.removeLocation(args[1]))
+        else if(DBInterface.removeLocation(args[1], dimension))
             sender.sendMessage(ChatColor.GREEN + "Removed location \"" + args[1] + "\"");
         else
             sender.sendMessage(ChatColor.RED + "An error has occurred. Please report this incident to your server administrator.");
@@ -203,9 +204,12 @@ public class LocationCommand implements CommandExecutor {
     /**
      * Prints out to the user the list of all locations
      */
-    public void list(CommandSender sender, String[] args){
-        Player p = (Player) sender;
-        TreeMap<String, String> locs = DBInterface.getAllLocations(getDimension(p.getWorld().getBiome(p.getLocation().getBlockX(), p.getLocation().getBlockZ())));
+    public void list(Player sender, String[] args){
+        // TODO: More output on request?
+
+        Location l = sender.getLocation();
+        String dimension = getDimension(sender.getWorld().getBiome(l.getBlockX(), l.getBlockZ()));
+        TreeMap<String, String> locs = DBInterface.getAllLocations(dimension);
 
         if(locs.size() == 0){
             sender.sendMessage(ChatColor.RED + "There are no locations to show.");
@@ -226,7 +230,7 @@ public class LocationCommand implements CommandExecutor {
      * @param b - Biome to get the dimension from
      * @return String of the dimension
      */
-    private String getDimension(Biome b){
+    public static String getDimension(Biome b){
         switch(b){
             case HELL:
                 return "nether";

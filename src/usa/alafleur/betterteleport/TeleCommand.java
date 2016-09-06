@@ -49,15 +49,17 @@ public class TeleCommand implements CommandExecutor {
     }
 
     public void teleport(Player player, String[] args){
-        // TODO: Set the roll, pitch and yaw according to the player's roll, pitch and yaw
         int x = 0;
         int y = 0;
         int z = 0;
 
+        Location l = player.getLocation();
+        String dimension = LocationCommand.getDimension(player.getWorld().getBiome(l.getBlockX(), l.getBlockZ()));
+
         if(args.length == 1) {
             // Either going to a player or an alias - check alias first, then player
             String targetName = args[0];
-            int[] locs = DBInterface.getCoordinatesFromAlias(targetName);
+            int[] locs = DBInterface.getCoordinates(targetName, dimension);
 
             if(locs != null){
                 x = locs[0];
@@ -88,7 +90,7 @@ public class TeleCommand implements CommandExecutor {
             z = Integer.parseInt(args[2]);
         }
 
-        Location target = new Location(player.getWorld(), (double) x, (double) y, (double) z);
+        Location target = new Location(player.getWorld(), (double) x, (double) y, (double) z, l.getPitch(), l.getYaw());
         if(!player.teleport(target)){
             player.sendMessage(ChatColor.RED + "An error occurred attempting to teleport. Check with your server administrator.");
         }

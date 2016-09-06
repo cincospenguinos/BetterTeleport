@@ -28,6 +28,7 @@ public class BetterTeleport extends JavaPlugin {
             return;
         }
 
+        // TODO: Figure out how to disable this plugin if the schema can't get setup right
         if(!DBInterface.setupSchema("minecraft")){
             log("Could not setup the database! Please check logs and ensure that your database is setup correctly.", Level.SEVERE);
             return;
